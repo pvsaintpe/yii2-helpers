@@ -1,0 +1,32 @@
+{
+  "name": "pvsaintpe/yii2-helpers",
+  "description": "Package",
+  "keywords": [
+    "yii2",
+    "gridview"
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Veselov",
+      "email": "pvsaintpe@icloud.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "yiisoft/yii2": "2.0.15.1",
+    "kartik-v/yii2-helpers": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "pvsaintpe\\helpers\\": ""
+    }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}
