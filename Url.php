@@ -46,7 +46,7 @@ class Url extends \yii\helpers\Url
                     $params[$namespace][$param] = $value;
                 }
             } else {
-                $params[$namespace][$namespace] = $namespaceParams;
+                $params[$namespace] = $namespaceParams;
             }
         }
 
