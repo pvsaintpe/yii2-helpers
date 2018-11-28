@@ -54,7 +54,7 @@ class ArrayHelper extends ArrayHelperBase
         }
         $args = static::getEachParams(func_get_args());
         $items = array_shift($args);
-        static::eachItems($func, $items, $args);
+        static::eachItems($func, count($args) + 1, $items, $args);
     }
 
     /**
@@ -80,19 +80,21 @@ class ArrayHelper extends ArrayHelperBase
     /**
      * Recursive traversal of all arrays
      * @param Closure $func
+     * @param int $countParams
      * @param array $items
      * @param array $childItems []
      * @param array $params []
      */
-    private static function eachItems(Closure $func, array $items, array $childItems = [], array $params = [])
+    private static function eachItems(Closure $func, $countParams, array $items, array $childItems = [], array $params = [])
     {
         $targetItems = array_shift($childItems);
         foreach ($items as $item) {
-            if (empty($targetItems)) {
-                call_user_func_array($func, array_merge($params, [$item]));
+            $funcParams = array_merge($params, [$item]);
+            if (count($funcParams) === $countParams) {
+                call_user_func_array($func, $funcParams);
                 continue;
             }
-            static::eachItems($func, $targetItems, $childItems, array_merge($params, [$item]));
+            static::eachItems($func, $countParams, $targetItems, $childItems, array_merge($params, [$item]));
         }
     }
 }
